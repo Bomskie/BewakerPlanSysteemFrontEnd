@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createBewaking } from '../../store/actions/bewakingActions'
+import {getAllKlanten} from '../../store/actions/klantActions'
 
 class CreateBewaking extends Component {
   state = {
     title: '',
     content: ''
+  }
+  
+  componentDidMount(){
+    this.props.fillKlanten();
   }
   handleChange = (e) => {
     this.setState({
@@ -18,9 +23,14 @@ class CreateBewaking extends Component {
     this.props.createBewaking(this.state);
   }
   render() {
+
+    const {klanten} = this.props;
+
+    console.log(this.props)
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
+         
           <h5 className="grey-text text-darken-3">Bewaking toevoegen</h5>
           <div className="input-field">
             <input type="text" id='title' onChange={this.handleChange} />
@@ -39,10 +49,18 @@ class CreateBewaking extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createBewaking: (bewaking) => dispatch(createBewaking(bewaking))
+const mapStateToProps = (state) =>{
+  return{
+    bewakingen: state.bewaking.bewakingen,
+    auth: state.auth,
+    klanten: state.klanten
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateBewaking)
+const mapDispatchToProps = (dispatch) =>{
+  return {
+      fillKlanten: () => dispatch(getAllKlanten())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBewaking)

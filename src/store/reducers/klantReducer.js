@@ -8,7 +8,7 @@ const initState = {
             // console.log(action.bewakingen)
              return{
                  ...state,
-                 bewakingen: action.klanten
+                 klanten: action.klanten
              }
          default:
              //console.log("niks");
