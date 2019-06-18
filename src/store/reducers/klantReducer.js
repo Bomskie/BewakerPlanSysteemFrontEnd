@@ -1,5 +1,5 @@
 const initState = {
-    klanten: null
+    klanten: []
  } 
  
  const klantReducer = (state = initState, action) =>{

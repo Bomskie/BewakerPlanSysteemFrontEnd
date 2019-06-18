@@ -8,14 +8,13 @@ import {getAllBewaking} from '../../store/actions/bewakingActions'
 class Dashboard extends Component {
 
     componentDidMount(){
-      this.props.fillDashBoard();
+      this.props.fillDashBoard(this.props.auth.token, this.props.auth.userId);
     }
 
     render() {
      //console.log(this.props)
     //this.props.fillDashBoard();
-
-
+    
       const {bewakingen, auth} = this.props;
       
       //REDIRECT naar login als je nog niet ingelogd bent
@@ -45,8 +44,9 @@ class Dashboard extends Component {
   }
 
   const mapDispatchToProps = (dispatch) =>{
+    //console.log(dispatch)
     return {
-        fillDashBoard: () => dispatch(getAllBewaking())
+        fillDashBoard: (token, userId) => dispatch(getAllBewaking(token, userId))
     }
 }
   

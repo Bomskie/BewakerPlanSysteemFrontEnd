@@ -8,7 +8,7 @@ export const signIn = (credentials) =>{
                 if(Response.data === 400){
                     dispatch({type: "LOGIN_ERROR"})
                 }else{
-                    dispatch({type: "LOGIN_SUCCES", id: Response.data.id, name: Response.data.voornaam + " " + Response.data.achternaam})
+                    dispatch({type: "LOGIN_SUCCES", id: Response.data.bewaker.id, name: Response.data.bewaker.voornaam + " " + Response.data.bewaker.achternaam, token: Response.data.token})
                 }
             }).catch(error =>{
                  //console.log(error.response.status)

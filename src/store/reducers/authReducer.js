@@ -1,7 +1,8 @@
 const initState = {
     authError: null,
     userId: null,
-    name: null
+    name: null,
+    token: null
 } 
 
 const authReducer = (state = initState, action) =>{
@@ -18,7 +19,8 @@ const authReducer = (state = initState, action) =>{
                 ...state,
                 authError: null,
                 userId: action.id,
-                name: action.name
+                name: action.name,
+                token: action.token
             }
         default:
             return state
